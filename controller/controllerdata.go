@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/MicroProcessingSolutions/go-architect/resource"
+	"github.com/MicroProcessingSolutions/go-architect/tasks"
 	"github.com/urfave/cli"
 )
 
@@ -48,5 +49,12 @@ func (data *Data) PrepareApplication() {
 		Usage:   "Create resource file for new project",
 		Action:  resource.SaveHandler,
 	}
+	buildCommand := cli.Command{Name: "build",
+		Aliases: []string{"b"},
+		Usage:   "Build project using go-build",
+		Action:  tasks.BuildHandler,
+	}
+
 	data.AddCommand(createCommand)
+	data.AddCommand(buildCommand)
 }
