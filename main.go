@@ -1,15 +1,13 @@
 package main
 
 import (
-	"log"
-	"os"
-
+	"github.com/MicroProcessingSolutions/go-architect/controller"
 	"github.com/urfave/cli"
 )
 
 func main() {
-	err := cli.NewApp().Run(os.Args)
-	if err != nil {
-		log.Fatal(err)
-	}
+	var application controller.Controller = new(controller.Data)
+	application.SetApplication(cli.NewApp(), "go-architect", "go-architect is used to make packages from your go code and resources")
+	application.PrepareApplication()
+	application.Run()
 }
