@@ -10,6 +10,7 @@ import (
 type Resources struct {
 	Name    string   `json:"name"`
 	Folders []Folder `json:"folders"`
+	Files   []File   `json:"file"`
 }
 
 //CreateResources creates resources internals

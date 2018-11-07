@@ -6,4 +6,5 @@ type Resource interface {
 	SetName(string)
 	GetPath() string
 	SetPath(string)
+	GetParent() *Resource
 }
