@@ -17,7 +17,8 @@ func (resolver *PathResolver) Resolve(input string) error {
 	countSlash := strings.Count(input, "/")
 	countBackslash := strings.Count(input, "\\")
 
-	if countSlash > 0 && countBackslash > 0 {
+	if (countSlash > 0 && countBackslash > 0) || countSlash+countBackslash == len(resolver.input) {
+		resolver.output = nil
 		inconsistentError := BadResolving{}
 		inconsistentError.SetPath(input)
 		resolver.err = inconsistentError
@@ -26,6 +27,8 @@ func (resolver *PathResolver) Resolve(input string) error {
 		resolver.output = strings.Split(resolver.input, "/")
 	} else if countBackslash > 0 {
 		resolver.output = strings.Split(resolver.input, "\\")
+	} else {
+		resolver.output = []string{input}
 	}
 
 	resolver.err = nil
