@@ -15,5 +15,5 @@ func (commandError *UnknownCommand) SetName(name string) {
 }
 
 func (commandError *UnknownCommand) Error() string {
-	return fmt.Sprintf("Unknown command: %s.", commandError.name)
+	return fmt.Sprintf("Unknown command: %s.\n", commandError.name)
 }

@@ -18,9 +18,9 @@ func AddHandler(c *cli.Context) error {
 
 	switch c.Command.Name {
 	case "file":
-		err = AddFileHandler(c, resources)
+		err = AddFileHandler(c.Args().Get(0), resources)
 	case "folder":
-		//TODO: implement
+		err = AddFolderHandler(c.Args().Get(0), resources)
 	default:
 		commandError := new(resource.UnknownCommand)
 		commandError.SetName(c.Command.Name)
@@ -30,15 +30,28 @@ func AddHandler(c *cli.Context) error {
 	return resource.SaveHandler(resources)
 }
 
-//Add file handler adds file to resource
-func AddFileHandler(c *cli.Context, resources *resource.Resources) error {
-	nameArg := c.Args().Get(0)
+//AddFileHandler handler adds file to resources
+func AddFileHandler(nameArg string, resources *resource.Resources) error {
 
 	if nameArg != "" {
 		fileResource := resource.File{Name: nameArg,
 			Path:   nameArg,
 			Parent: nil}
 		resources.Files = append(resources.Files, fileResource)
+	}
+
+	return nil
+}
+
+//AddFolderHandler adds folder to resources
+func AddFolderHandler(nameArg string, resources *resource.Resources) error {
+	if nameArg != "" {
+		folderResource := resource.Folder{Name: nameArg,
+			Path:   nameArg,
+			Parent: nil}
+		resources.Folders = append(resources.Folders, folderResource)
+	} else {
+
 	}
 
 	return nil
