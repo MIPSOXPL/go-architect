@@ -6,7 +6,7 @@ import (
 
 func TestRecursiveCreateHierarchyNoErrors(test *testing.T) {
 	hierarchy := &RecursiveHierarchy{}
-	hierarchy.CreateHierarchy("../test-env", nil)
+	hierarchy.CreateHierarchy("../test-env/recursivehierarchy", nil)
 
 	if hierarchy.err != nil {
 		test.Errorf("Hierarchy test failed:\n %s", hierarchy.err.Error())
@@ -45,7 +45,7 @@ func TestRecursiveHierarchyItself(test *testing.T) {
 	const filesSizeExpected = 4
 
 	hierarchy := &RecursiveHierarchy{}
-	hierarchy.CreateHierarchy("../test-env", nil)
+	hierarchy.CreateHierarchy("../test-env/recursivehierarchy", nil)
 
 	if hierarchy.err != nil {
 		test.Errorf("Hierarchy test failed:\n %s", hierarchy.err.Error())
@@ -71,7 +71,7 @@ func TestRecursiveHierarchyItself(test *testing.T) {
 
 func TestRecursiveCleanHierarchy(test *testing.T) {
 	hierarchy := &RecursiveHierarchy{}
-	hierarchy.CreateHierarchy("../test-env", nil)
+	hierarchy.CreateHierarchy("../test-env/recursivehierarchy", nil)
 
 	if hierarchy.err != nil {
 		test.Errorf("Hierarchy test failed:\n %s", hierarchy.err.Error())
