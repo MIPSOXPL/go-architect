@@ -28,6 +28,6 @@ func (folder *Folder) SetPath(path string) {
 }
 
 //GetParent gets parent of folder
-func (folder *Folder) GetParent() *Resource {
-	return &folder.Parent
+func (folder *Folder) GetParent() Resource {
+	return folder.Parent
 }

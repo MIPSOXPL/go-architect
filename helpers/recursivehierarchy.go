@@ -42,3 +42,11 @@ func (hierarchy *RecursiveHierarchy) CreateHierarchy(path string, parent *resour
 
 	hierarchy.err = err
 }
+
+//CleanHierarchy is used to empty hierarchy object
+func (hierarchy *RecursiveHierarchy) CleanHierarchy() {
+	hierarchy.sourcePath = ""
+	hierarchy.err = nil
+	hierarchy.files = nil
+	hierarchy.folders = nil
+}

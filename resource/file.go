@@ -28,6 +28,6 @@ func (file *File) SetPath(path string) {
 }
 
 //GetParent gets parent of file
-func (file *File) GetParent() *Resource {
-	return &file.Parent
+func (file *File) GetParent() Resource {
+	return file.Parent
 }
