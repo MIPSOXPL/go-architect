@@ -62,7 +62,7 @@ func TestGetParent(test *testing.T) {
 	var folder Resource
 	folder = &Folder{Parent: nil}
 	var file Resource
-	file = &File{Parent: folder}
+	file = &File{Parent: folder.(*Folder)}
 
 	if folder.GetParent() != nil {
 		test.Errorf("Folder resource parent not nil")

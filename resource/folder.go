@@ -2,9 +2,9 @@ package resource
 
 //Folder defines structure for folder
 type Folder struct {
-	Name   string   `json:"name"`
-	Path   string   `json:"path"`
-	Parent Resource `json:"parent"`
+	Name   string  `json:"name"`
+	Path   string  `json:"path"`
+	Parent *Folder `json:"parent"`
 }
 
 //GetName gets name of folder
@@ -28,6 +28,6 @@ func (folder *Folder) SetPath(path string) {
 }
 
 //GetParent gets parent of folder
-func (folder *Folder) GetParent() Resource {
+func (folder *Folder) GetParent() *Folder {
 	return folder.Parent
 }

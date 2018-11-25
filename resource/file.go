@@ -2,9 +2,9 @@ package resource
 
 //File contains information about file as resource in project.
 type File struct {
-	Name   string   `json:"name"`
-	Path   string   `json:"path"`
-	Parent Resource `json:"parent"`
+	Name   string  `json:"name"`
+	Path   string  `json:"path"`
+	Parent *Folder `json:"parent"`
 }
 
 //GetName gets name of file
@@ -28,6 +28,6 @@ func (file *File) SetPath(path string) {
 }
 
 //GetParent gets parent of file
-func (file *File) GetParent() Resource {
+func (file *File) GetParent() *Folder {
 	return file.Parent
 }
