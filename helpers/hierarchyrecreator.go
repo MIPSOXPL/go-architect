@@ -1,6 +1,10 @@
 package helpers
 
-import "github.com/MicroProcessingSolutions/go-architect/resource"
+import (
+	"os"
+
+	"github.com/MicroProcessingSolutions/go-architect/resource"
+)
 
 //HierarchyRecreator allows to recreate hierarchy
 type HierarchyRecreator struct {
@@ -12,20 +16,25 @@ func (recreator *HierarchyRecreator) Recreate(hierarchy *RecursiveHierarchy, pat
 		return hierarchy.err
 	}
 
-	for {
-		for {
-
-		}
-	}
-
-	return nil
+	return recreator.recreate(hierarchy, nil, path)
 }
 
 func (recreator *HierarchyRecreator) recreate(hierarchy *RecursiveHierarchy, parent *resource.Folder, path string) error {
 
-	/*for counter := range hierarchy.folders {
-		//actualFolder := hierarchy.folders[counter].GetParent()
-	}*/
+	for counter := range hierarchy.folders {
+		actualFolder := hierarchy.folders[counter].GetParent()
+
+		if actualFolder.GetParent() == parent {
+			preparedPath := path + "/" + actualFolder.GetName()
+			err := os.Mkdir(preparedPath, os.ModeDir)
+
+			if err != nil {
+				return err
+			}
+
+			recreator.recreate(hierarchy, actualFolder, preparedPath)
+		}
+	}
 
 	return nil
 }
