@@ -22,7 +22,7 @@ func (recreator *HierarchyRecreator) Recreate(hierarchy *RecursiveHierarchy, pat
 func (recreator *HierarchyRecreator) recreate(hierarchy *RecursiveHierarchy, parent *resource.Folder, path string) error {
 
 	for counter := range hierarchy.folders {
-		actualFolder := hierarchy.folders[counter].GetParent()
+		actualFolder := hierarchy.folders[counter]
 
 		if actualFolder.GetParent() == parent {
 			preparedPath := path + "/" + actualFolder.GetName()
@@ -32,7 +32,7 @@ func (recreator *HierarchyRecreator) recreate(hierarchy *RecursiveHierarchy, par
 				return err
 			}
 
-			recreator.recreate(hierarchy, actualFolder, preparedPath)
+			recreator.recreate(hierarchy, &actualFolder, preparedPath)
 		}
 	}
 
