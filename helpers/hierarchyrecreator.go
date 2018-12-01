@@ -3,6 +3,8 @@ package helpers
 import (
 	"os"
 
+	"errors"
+
 	"github.com/MicroProcessingSolutions/go-architect/resource"
 )
 
@@ -11,6 +13,7 @@ type HierarchyRecreator struct {
 	savedPath          string
 	hierarchyGenerated bool
 	err                error
+	originHierarchy    *RecursiveHierarchy
 }
 
 //RecreateFolders allows to recreate hierarchy of hierarchy
@@ -62,5 +65,17 @@ func (recreator *HierarchyRecreator) recreate(hierarchy *RecursiveHierarchy, par
 
 //CopyFiles copies files after recreation of structure of folders
 func (recreator *HierarchyRecreator) CopyFiles(hierarchy *RecursiveHierarchy) error {
+	if recreator.originHierarchy != hierarchy {
+		recreator.err = errors.New("Origin hierarchy not same as argument")
+		return recreator.err
+	}
+	if recreator.hierarchyGenerated == false {
+		recreator.err = errors.New("Hierarchy folders not generated earlier")
+		return recreator.err
+	}
+
+	copiedFolders := hierarchy.folders
+	copiedFiles := hierarchy.files
+
 	return nil
 }

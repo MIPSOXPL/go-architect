@@ -34,3 +34,8 @@ func (resolver *PathResolver) Resolve(input string) error {
 	resolver.err = nil
 	return nil
 }
+
+//CreatePathFromHierarchy is used for creating path
+func (resolver *PathResolver) CreatePathFromHierarchy(hierarchy HierarchyRecreator) (string, error) {
+	return "", nil
+}

@@ -76,7 +76,7 @@ func TestHierarchyCopy(test *testing.T) {
 	for counter := 0; counter < len(elementsToTest); counter++ {
 		actualPath := outputPath + "/" + elementsToTest[counter]
 		if _, err := os.Stat(actualPath); os.IsNotExist(err) {
-			test.Errorf("Recreated path `%s` does not exist.", actualPath)
+			test.Errorf("Recreated file`%s` does not exist.", actualPath)
 		}
 	}
 }
