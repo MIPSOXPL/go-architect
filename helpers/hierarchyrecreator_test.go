@@ -80,3 +80,42 @@ func TestHierarchyCopy(test *testing.T) {
 		}
 	}
 }
+
+func TestHierarchyOutputPathError(test *testing.T) {
+	testPath := "../test-env/recursivehierarchy"
+	outputPath := "../test-env-bad/recursivehierarchy_output"
+
+	hierarchy := &RecursiveHierarchy{}
+	hierarchy.CreateHierarchy(testPath, nil)
+
+	if hierarchy.err != nil {
+		test.Errorf("Hierarchy getting due to test requirements failed:\n %s",
+			hierarchy.err.Error())
+	}
+
+	recreator := &HierarchyRecreator{}
+	recreator.RecreateFolders(hierarchy, outputPath)
+
+	if recreator.err == nil {
+		test.Errorf("No error during recreation when error required.\n")
+	}
+}
+
+func TestHierarchyBadInputPathError(test *testing.T) {
+	testPath := "../test-env-bad/recursivehierarchy"
+	outputPath := "../test-env-bad/recursivehierarchy_output"
+
+	hierarchy := &RecursiveHierarchy{}
+	hierarchy.CreateHierarchy(testPath, nil)
+
+	if hierarchy.err == nil {
+		test.Errorf("Hierarchy has no errors even if it should.")
+	}
+
+	recreator := &HierarchyRecreator{}
+	recreator.RecreateFolders(hierarchy, outputPath)
+
+	if recreator.err != hierarchy.err {
+		test.Errorf("Errors not equal.\n")
+	}
+}

@@ -22,6 +22,7 @@ func (hierarchy *RecursiveHierarchy) CreateHierarchy(path string, parent *resour
 
 	if err != nil {
 		hierarchy.err = err
+		return
 	}
 
 	for counter := range info {

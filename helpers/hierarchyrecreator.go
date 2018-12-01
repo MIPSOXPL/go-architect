@@ -74,8 +74,8 @@ func (recreator *HierarchyRecreator) CopyFiles(hierarchy *RecursiveHierarchy) er
 		return recreator.err
 	}
 
-	copiedFolders := hierarchy.folders
-	copiedFiles := hierarchy.files
+	//copiedFolders := hierarchy.folders
+	//copiedFiles := hierarchy.files
 
 	return nil
 }
